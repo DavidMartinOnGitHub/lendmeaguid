@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lend Me A GUID</title>
+    <script>
+
+        class GuidRequestOptions {
+            constructor() {
+                this.count = 2;
+                this.isUpperCaseRequired = true;
+                this.isHyphensRequired = true;
+                this.isBracketsRequired = true;
+            }
+            count;
+            isUpperCaseRequired;
+            isBracketsRequired;
+            isHyphensRequired;
+        }
+       
+            
+
+            
+        //function OnClickedGenerateGuidUsingGET() {
+        //    const baseUrl = "https://localhost:7105";
+        //    const route = "/guid";
+        //    const api = baseUrl + route;
+
+        //    fetch(api)
+        //        .then((response) => response.text())
+        //        .then(function (response) {
+        //            console.log(">>" + response + "<<");
+        //            document.getElementById("display").innerHTML = response;
+        //        });
+        //}
+
+        function OnClickedGenerateGuidUsingPost() {
+            const baseUrl = "https://localhost:7105";
+            const route = "/guid";
+            const api = baseUrl + route;
+
+            var copyToClipboard = document.getElementById("chkCopyToClipboard").checked;
+            var toUpper = document.getElementById("upper").checked;
+            var withHyphens = document.getElementById("hyphens").checked;
+            var withBrackets = document.getElementById("brackets").checked;
+            var howMany = document.getElementById("count");
+
+            let jsonbody = '{ "count": 1, "isUpperCaseRequired": true, "isBracketsRequired": false, "isHyphensRequired": true }';
+            const options = new GuidRequestOptions();
+            options.count = parseInt(howMany.value);
+            options.isUpperCaseRequired = toUpper;
+            options.isHyphensRequired = withHyphens;
+            options.isBracketsRequired = withBrackets;
+
+            jsonbody = JSON.stringify(options);
+            //console.log(jsonbody);
+
+            fetch(api, {
+                method: 'POST',
+                body: jsonbody,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                })
+                .then((response) => response.text())
+                .then(function (response) {
+                    console.log(">>" + response + "<<");
+                    document.getElementById("display").innerHTML = response;
+                    if (copyToClipboard) navigator.clipboard.writeText(response);
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <div id="count-div">
+        <label for="count">How many (1..500) ?:</label>
+        <input type="number" id="count" min="1" max="500" step="1" value="1" size="5">
+    </div>
+
+
+    <div id="upper-div">
+        <input type="checkbox" value="true" id="upper" name="chkUpper" checked />
+        <label for="upper">Upper Case</label>
+    </div>
+
+    <div id="hyphens-div">
+        <input type="checkbox" value="true" id="hyphens" name="chkHyphens" checked />
+        <label for="hyphens">Hyphens</label>
+    </div>
+
+    <div id="brackets-div">
+
+        <input type="checkbox" value="false" id="brackets" name="chkBrackets" />
+        <label for="brackets">Brackets</label>
+    </div>
+
+    <p />
+
+    <div id="clipboard-div">
+
+        <input type="checkbox" value="true" id="chkCopyToClipboard" name="chkCopyToClipboard" checked />
+        <label for="chkCopyToClipboard">Auto-Copy to Clipboard</label>
+    </div>
+
+    <p />
+    <button onclick="OnClickedGenerateGuidUsingPost()">Generate GUID</button>
+    <p id="dbgout"></p>
+    <textarea id="display" name="display" rows="20" cols="50" readonly></textarea>
+</body>
+</html>
