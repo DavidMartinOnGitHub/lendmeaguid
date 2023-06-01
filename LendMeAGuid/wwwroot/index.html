@@ -17,25 +17,10 @@
             isBracketsRequired;
             isHyphensRequired;
         }
-       
-            
-
-            
-        //function OnClickedGenerateGuidUsingGET() {
-        //    const baseUrl = "https://localhost:7105";
-        //    const route = "/guid";
-        //    const api = baseUrl + route;
-
-        //    fetch(api)
-        //        .then((response) => response.text())
-        //        .then(function (response) {
-        //            console.log(">>" + response + "<<");
-        //            document.getElementById("display").innerHTML = response;
-        //        });
-        //}
+ 
 
         function OnClickedGenerateGuidUsingPost() {
-            const baseUrl = "https://localhost:7105";
+            const baseUrl = window.location.origin; // on my development machine : "https://localhost:7105";
             const route = "/guid";
             const api = baseUrl + route;
 
@@ -46,6 +31,7 @@
             var howMany = document.getElementById("count");
 
             let jsonbody = '{ "count": 1, "isUpperCaseRequired": true, "isBracketsRequired": false, "isHyphensRequired": true }';
+
             const options = new GuidRequestOptions();
             options.count = parseInt(howMany.value);
             options.isUpperCaseRequired = toUpper;
@@ -54,6 +40,7 @@
 
             jsonbody = JSON.stringify(options);
             //console.log(jsonbody);
+
 
             fetch(api, {
                 method: 'POST',
@@ -65,7 +52,6 @@
                 })
                 .then((response) => response.text())
                 .then(function (response) {
-                    console.log(">>" + response + "<<");
                     document.getElementById("display").innerHTML = response;
                     if (copyToClipboard) navigator.clipboard.writeText(response);
                 });
