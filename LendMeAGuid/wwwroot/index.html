@@ -1,8 +1,12 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>Lend Me A GUID</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
 
         class GuidRequestOptions {
@@ -17,7 +21,7 @@
             isBracketsRequired;
             isHyphensRequired;
         }
- 
+
 
         function OnClickedGenerateGuidUsingPost() {
             const baseUrl = window.location.origin; // on my development machine : "https://localhost:7105";
@@ -49,7 +53,7 @@
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                })
+            })
                 .then((response) => response.text())
                 .then(function (response) {
                     document.getElementById("display").innerHTML = response;
@@ -60,13 +64,69 @@
 </head>
 <body>
 
-    <div id="count-div">
-        <label for="count">How many (1..500) ?:</label>
-        <input type="number" id="count" min="1" max="500" step="1" value="1" size="5">
+    <div class="container p-5 bg-primary text-white text-center">
+        <h1>Lend Me a GUID</h1>
+        <p>A simple GUID generator.</p>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-4">
+                <!--<h3>Column 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>-->
+            </div>
+            <div class="col-sm-4">
+                <!--<h3>Column 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>-->
+                <div id="count-div">
+                    <label for="count">How many (1..500) ? : </label>
+                    <input type="number" id="count" min="1" max="500" step="1" value="1" size="5">
+                </div>
+                <div id="upper-div">
+                    <input type="checkbox" value="true" id="upper" name="chkUpper" checked />
+                    <label for="upper">Upper Case</label>
+                </div>
+
+                <div id="hyphens-div">
+                    <input type="checkbox" value="true" id="hyphens" name="chkHyphens" checked />
+                    <label for="hyphens">Hyphens</label>
+                </div>
+
+                <div id="brackets-div">
+
+                    <input type="checkbox" value="false" id="brackets" name="chkBrackets" />
+                    <label for="brackets">Brackets</label>
+                </div>
+
+                <p />
+
+                <div id="clipboard-div">
+
+                    <input type="checkbox" value="true" id="chkCopyToClipboard" name="chkCopyToClipboard" checked />
+                    <label for="chkCopyToClipboard">Auto-Copy to Clipboard</label>
+                </div>
+
+                <p />
+                <button class="btn btn-primary mt-3" onclick="OnClickedGenerateGuidUsingPost()">Generate GUID</button>
+                <p id="dbgout"></p>
+                <textarea id="display" name="display" rows="20" cols="50" style="font-family:monospace;" readonly></textarea>
+            </div>
+            <div class="col-sm-4">
+                <!--<h3>Column 3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>-->
+            </div>
+        </div>
     </div>
 
+    <!--<div id="count-div">
+        <label for="count">How many (1..500) ? : </label>
+        <input type="number" id="count" min="1" max="500" step="1" value="1" size="5">
+    </div>-->
 
-    <div id="upper-div">
+
+    <!--<div id="upper-div">
         <input type="checkbox" value="true" id="upper" name="chkUpper" checked />
         <label for="upper">Upper Case</label>
     </div>
@@ -88,11 +148,11 @@
 
         <input type="checkbox" value="true" id="chkCopyToClipboard" name="chkCopyToClipboard" checked />
         <label for="chkCopyToClipboard">Auto-Copy to Clipboard</label>
-    </div>
+    </div>-->
 
-    <p />
+    <!--<p />
     <button onclick="OnClickedGenerateGuidUsingPost()">Generate GUID</button>
     <p id="dbgout"></p>
-    <textarea id="display" name="display" rows="20" cols="50" readonly></textarea>
+    <textarea id="display" name="display" rows="20" cols="50" readonly></textarea>-->
 </body>
 </html>
