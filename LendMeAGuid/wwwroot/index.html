@@ -80,35 +80,35 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>-->
                 <div id="count-div">
-                    <label for="count">How many (1..500) ? : </label>
-                    <input type="number" id="count" min="1" max="500" step="1" value="1" size="5">
+                    <label for="count" data-bs-toggle="tooltip" title="Enter how many GUIDs to generate.">How many (1..500) ? : </label>
+                    <input type="number" id="count" min="1" max="500" step="1" value="1" size="5" data-bs-toggle="tooltip" title="Enter how many GUIDs to generate.">
                 </div>
                 <div id="upper-div">
-                    <input type="checkbox" value="true" id="upper" name="chkUpper" checked />
-                    <label for="upper">Upper Case</label>
+                    <input type="checkbox" value="true" id="upper" name="chkUpper" data-bs-toggle="tooltip" title="Generate a GUID using Upper Case text." checked />
+                    <label for="upper" data-bs-toggle="tooltip" title="Generate a GUID using Upper Case text.">Upper Case</label>
                 </div>
 
                 <div id="hyphens-div">
-                    <input type="checkbox" value="true" id="hyphens" name="chkHyphens" checked />
-                    <label for="hyphens">Hyphens</label>
+                    <input type="checkbox" value="true" id="hyphens" name="chkHyphens" data-bs-toggle="tooltip" title="Embed hyphens to create GUID in 8-4-4-4-12 format." checked />
+                    <label for="hyphens" data-bs-toggle="tooltip" title="Embed hyphens to create GUID in 8-4-4-4-12 format.">Hyphens</label>
                 </div>
 
                 <div id="brackets-div">
 
-                    <input type="checkbox" value="false" id="brackets" name="chkBrackets" />
-                    <label for="brackets">Brackets</label>
+                    <input type="checkbox" value="false" id="brackets" name="chkBrackets" data-bs-toggle="tooltip" title="Surround GUID with { } brackets." />
+                    <label for="brackets" data-bs-toggle="tooltip" title="Surround GUID with { } brackets.">Brackets</label>
                 </div>
 
                 <p />
 
                 <div id="clipboard-div">
 
-                    <input type="checkbox" value="true" id="chkCopyToClipboard" name="chkCopyToClipboard" checked />
-                    <label for="chkCopyToClipboard">Auto-Copy to Clipboard</label>
+                    <input type="checkbox" value="true" id="chkCopyToClipboard" name="chkCopyToClipboard" data-bs-toggle="tooltip" title="Check this to copy the GUIDs to the Clipboard when they're generated." checked />
+                    <label for="chkCopyToClipboard" data-bs-toggle="tooltip" title="Check this to copy the GUIDs to the Clipboard when they're generated.">Auto-Copy to Clipboard</label>
                 </div>
 
                 <p />
-                <button class="btn btn-primary mt-3" onclick="OnClickedGenerateGuidUsingPost()">Generate GUID</button>
+                <button class="btn btn-primary mt-3" onclick="OnClickedGenerateGuidUsingPost()" data-bs-toggle="tooltip" title="Click to generate GUIDs.">Generate GUID</button>
                 <p id="dbgout"></p>
                 <textarea id="display" name="display" rows="20" cols="50" style="font-family:monospace;" readonly></textarea>
             </div>
